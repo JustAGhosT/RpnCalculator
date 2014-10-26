@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Row13.RpnCalculator", "Row13.RpnCalculator\Row13.RpnCalculator.csproj", "{075AED86-5E95-47FC-B48F-B671FE8B6FC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Row13.RpnCalculator.Tests", "Row13.RpnCalculator.Tests\Row13.RpnCalculator.Tests.csproj", "{613E74BF-C371-46F2-9382-DA86C99697E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{075AED86-5E95-47FC-B48F-B671FE8B6FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075AED86-5E95-47FC-B48F-B671FE8B6FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075AED86-5E95-47FC-B48F-B671FE8B6FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075AED86-5E95-47FC-B48F-B671FE8B6FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{613E74BF-C371-46F2-9382-DA86C99697E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{613E74BF-C371-46F2-9382-DA86C99697E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{613E74BF-C371-46F2-9382-DA86C99697E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{613E74BF-C371-46F2-9382-DA86C99697E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
