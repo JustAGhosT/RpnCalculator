@@ -1,5 +1,8 @@
 ﻿namespace Row13.RpnCalculator.Tests
 {
+    using System.ComponentModel.Composition;
+
+    [InheritedExport(typeof(IOperator))]
     public interface IOperator
     {
         int Precedence { get; set; }

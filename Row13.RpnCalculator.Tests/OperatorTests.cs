@@ -55,7 +55,7 @@ namespace Row13.RpnCalculator.Tests
             var result = op.Eval(2.0, 1.5);
 
             //------------Assert---------------------
-            Assert.AreEqual(result, 4/3);
+            Assert.AreEqual(result, 4.0/3.0);
         }
     }
 }

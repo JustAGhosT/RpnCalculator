@@ -1,5 +1,8 @@
 ﻿namespace Row13.RpnCalculator.Tests
 {
+    using System.ComponentModel.Composition;
+
+    [Export]
     public class AdditionOperator : Operator
     {
         public AdditionOperator()
