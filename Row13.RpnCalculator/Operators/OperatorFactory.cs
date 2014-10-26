@@ -1,18 +1,25 @@
-﻿namespace Row13.RpnCalculator.Tests
+﻿namespace Row13.RpnCalculator.Operators
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.Linq;
 
+    using Row13.RpnCalculator.Exceptions;
+
     public class OperatorFactory
     {
-        [ImportMany]
-        public IEnumerable<IOperator> Operators { get; set; }
+        private IEnumerable<IOperator> Operators { get; set; }
+
+        [ImportingConstructor]
+        public OperatorFactory([ImportMany]IEnumerable<IOperator> operators)
+        {
+            this.Operators = operators;
+        }
 
         public IOperator Create(char token)
         {
-            var @operator = Operators.FirstOrDefault(o => o.CanProcess(token));
+            var @operator = this.Operators.FirstOrDefault(o => o.CanProcess(token));
 
             if (@operator != null)
             {

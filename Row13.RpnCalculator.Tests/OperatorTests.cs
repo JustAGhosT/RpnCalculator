@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using Row13.RpnCalculator.Operators;
+
     [TestClass]
     public class OperatorTests
     {

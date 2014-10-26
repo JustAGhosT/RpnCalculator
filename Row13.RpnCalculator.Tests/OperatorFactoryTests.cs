@@ -3,24 +3,38 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using System.Collections.Generic;
+
+    using Row13.RpnCalculator.Exceptions;
+    using Row13.RpnCalculator.Operators;
+
     [TestClass]
     public class OperandFactoryTests
     {
-        //    + : add the preceding two numbers
-        //- : subtract the first number from the second
-        //* : multiply the preceding two numbers
-        /// : divide the first number by the second
-        //= : print the result of the preceding RPN expression to stdout
+        private OperatorFactory _operatorFactory;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            var operators = new List<IOperator>
+                                {
+                                    new AdditionOperator(),
+                                    new SubstractionOperator(),
+                                    new MultiplicationOperator(),
+                                    new DivisionOperator()
+                                };
+
+            _operatorFactory = new OperatorFactory(operators);
+        }
 
         [TestMethod]
         public void PlusSymbolReturnsPlusOperator()
         {
             //------------Arrange--------------------
-            var factory = new OperatorFactory();
             const char Token = '+';
 
             //------------Act------------------------
-            var op = factory.Create(Token);
+            var op = _operatorFactory.Create(Token);
 
             //------------Assert---------------------
             Assert.IsInstanceOfType(op, typeof(AdditionOperator));
@@ -30,11 +44,10 @@ namespace Row13.RpnCalculator.Tests
         public void MinusSymbolReturnsSubstractionOperator()
         {
             //------------Arrange--------------------
-            var factory = new OperatorFactory();
             const char Token = '-';
 
             //------------Act------------------------
-            var op = factory.Create(Token);
+            var op = _operatorFactory.Create(Token);
 
             //------------Assert---------------------
             Assert.IsInstanceOfType(op, typeof(SubstractionOperator));
@@ -44,11 +57,10 @@ namespace Row13.RpnCalculator.Tests
         public void MultiplySymbolReturnsMultiplicationOperator()
         {
             //------------Arrange--------------------
-            var factory = new OperatorFactory();
             const char Token = '*';
 
             //------------Act------------------------
-            var op = factory.Create(Token);
+            var op = _operatorFactory.Create(Token);
 
             //------------Assert---------------------
             Assert.IsInstanceOfType(op, typeof(MultiplicationOperator));
@@ -58,11 +70,10 @@ namespace Row13.RpnCalculator.Tests
         public void DivideSymbolReturnsDivisionOperator()
         {
             //------------Arrange--------------------
-            var factory = new OperatorFactory();
             const char Token = '/';
 
             //------------Act------------------------
-            var op = factory.Create(Token);
+            var op = _operatorFactory.Create(Token);
 
             //------------Assert---------------------
             Assert.IsInstanceOfType(op, typeof(DivisionOperator));
@@ -73,11 +84,10 @@ namespace Row13.RpnCalculator.Tests
         public void InvalidOperatorExcpectsInvalidOperatorException()
         {
             //------------Arrange--------------------
-            var factory = new OperatorFactory();
             const char Token = ';';
 
             //------------Act------------------------
-            var op = factory.Create(Token);
+            var op = _operatorFactory.Create(Token);
 
             //------------Assert---------------------
 

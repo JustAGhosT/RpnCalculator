@@ -8,3 +8,5 @@ C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculato
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\obj\Debug\Row13.RpnCalculator.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\obj\Debug\Row13.RpnCalculator.Tests.dll
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\obj\Debug\Row13.RpnCalculator.Tests.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\Row13.RpnCalculator.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\Row13.RpnCalculator.pdb

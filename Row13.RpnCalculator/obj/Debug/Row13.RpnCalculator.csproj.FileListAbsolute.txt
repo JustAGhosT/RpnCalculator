@@ -3,3 +3,11 @@ C:\Users\Jurie\SkyDrive\Projects\Row13.RpnCalculator\Row13.RpnCalculator\bin\Deb
 C:\Users\Jurie\SkyDrive\Projects\Row13.RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.csprojResolveAssemblyReference.cache
 C:\Users\Jurie\SkyDrive\Projects\Row13.RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.dll
 C:\Users\Jurie\SkyDrive\Projects\Row13.RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.csprojResolveAssemblyReference.cache
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\Row13.RpnCalculator.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\Row13.RpnCalculator.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.Reflection.Context.CodePlex.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.xml

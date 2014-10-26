@@ -31,6 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition.CodePlex">
+      <HintPath>..\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.CodePlex.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,7 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Exceptions\InvalidOperatorException.cs" />
+    <Compile Include="Operators\AdditionOperator.cs" />
+    <Compile Include="Operators\DivisionOperator.cs" />
+    <Compile Include="Operators\IOperator.cs" />
+    <Compile Include="Operators\MultiplicationOperator.cs" />
+    <Compile Include="Operators\Operator.cs" />
+    <Compile Include="Operators\OperatorFactory.cs" />
+    <Compile Include="Operators\SubstractionOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

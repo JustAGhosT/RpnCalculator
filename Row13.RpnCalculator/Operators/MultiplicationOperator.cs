@@ -1,4 +1,4 @@
-﻿namespace Row13.RpnCalculator.Tests
+﻿namespace Row13.RpnCalculator.Operators
 {
     public class MultiplicationOperator : Operator
     {

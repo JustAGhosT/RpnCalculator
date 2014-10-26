@@ -54,20 +54,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AdditionOperator.cs" />
-    <Compile Include="DivisionOperator.cs" />
-    <Compile Include="InvalidOperatorException.cs" />
-    <Compile Include="IOperator.cs" />
-    <Compile Include="MultiplicationOperator.cs" />
-    <Compile Include="Operator.cs" />
-    <Compile Include="OperatorFactory.cs" />
-    <Compile Include="SubstractionOperator.cs" />
     <Compile Include="OperatorFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Row13.RpnCalculator\Row13.RpnCalculator.csproj">
+      <Project>{075AED86-5E95-47FC-B48F-B671FE8B6FC7}</Project>
+      <Name>Row13.RpnCalculator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
