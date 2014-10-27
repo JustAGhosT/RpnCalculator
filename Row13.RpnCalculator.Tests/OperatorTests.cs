@@ -17,7 +17,7 @@ namespace Row13.RpnCalculator.Tests
             var result = op.Eval(2.0, 1.5);
 
             //------------Assert---------------------
-            Assert.AreEqual(result, 3.5);
+            Assert.AreEqual(3.5, result);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace Row13.RpnCalculator.Tests
             var result = op.Eval(2.0, 1.5);
 
             //------------Assert---------------------
-            Assert.AreEqual(result, 0.5);
+            Assert.AreEqual(0.5, result);
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace Row13.RpnCalculator.Tests
             var result = op.Eval(2.0, 1.5);
 
             //------------Assert---------------------
-            Assert.AreEqual(result, 3.0);
+            Assert.AreEqual(3.0, result);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Row13.RpnCalculator.Tests
             var result = op.Eval(2.0, 1.5);
 
             //------------Assert---------------------
-            Assert.AreEqual(result, 4.0/3.0);
+            Assert.AreEqual(4.0/3.0, result );
         }
     }
 }

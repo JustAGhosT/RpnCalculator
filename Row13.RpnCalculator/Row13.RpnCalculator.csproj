@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculator\ExpressionEvaluator.cs" />
     <Compile Include="Exceptions\InvalidOperatorException.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
