@@ -1,12 +1,12 @@
-﻿namespace Row13.RpnCalculator.Operators
-{
-    using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 
+namespace Row13.RpnCalculator.Operators
+{
     [Export]
     public class AdditionOperator : Operator
     {
         public AdditionOperator()
-            : base('+')
+            : base("+")
         {
         }
 

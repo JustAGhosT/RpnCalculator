@@ -2,12 +2,13 @@
 {
     using System.ComponentModel.Composition;
 
-    [InheritedExport(typeof(IOperator))]
+    [InheritedExport( typeof( IOperator ) )]
     public interface IOperator
     {
-        int Precedence { get; set; }
+        string ProcessedToken { get; }
 
-        double Eval(double operand1, double operand2);
-        bool CanProcess(char token);
+        int Precedence { get; set; }
+        double Eval( double operand1, double operand2 );
+        bool CanProcess( string token );
     }
 }

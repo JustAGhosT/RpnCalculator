@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex">
       <HintPath>..\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.CodePlex.dll</HintPath>
@@ -54,10 +57,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="OperatorFactoryTests.cs" />
+    <Compile Include="InitializationHelpers.cs" />
+    <Compile Include="OperatorTokenResultParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperatorTests.cs" />
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="TokenResultParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

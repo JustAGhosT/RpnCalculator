@@ -2,19 +2,22 @@
 {
     public abstract class Operator : IOperator
     {
-        private readonly char _processedToken;
+        public string ProcessedToken { get; private set; }
 
         public int Precedence { get; set; }
-        public abstract double Eval(double operand1, double operand2);
+        public abstract double Eval( double operand1, double operand2 );
 
-        protected Operator(char token)
+        protected Operator( string token )
         {
-            this._processedToken = token;
+            ProcessedToken = token;
+            TokenType = TokenType.Operator;
         }
 
-        public bool CanProcess(char token)
+        public bool CanProcess( string token )
         {
-            return token == this._processedToken;
+            return token == ProcessedToken;
         }
+
+        public TokenType TokenType { get; set; }
     }
 }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex">
       <HintPath>..\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.CodePlex.dll</HintPath>
@@ -43,15 +46,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator\ExpressionEvaluator.cs" />
+    <Compile Include="Calculator\ITokenResultParser.cs" />
+    <Compile Include="Calculator\TokenParser.cs" />
+    <Compile Include="Calculator\TokenResultParser.cs" />
     <Compile Include="Exceptions\InvalidOperatorException.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
+    <Compile Include="Operators\FinalizerParseResult.cs" />
+    <Compile Include="Exceptions\InvalidResultException.cs" />
+    <Compile Include="Operators\FinalizerTokenProcessor.cs" />
+    <Compile Include="Operators\FinalizerTokenResultParser.cs" />
     <Compile Include="Operators\IOperator.cs" />
+    <Compile Include="Operators\IOutputProcessor.cs" />
+    <Compile Include="Operators\ITokenResult.cs" />
     <Compile Include="Operators\MultiplicationOperator.cs" />
+    <Compile Include="Operators\OperandParseResult.cs" />
+    <Compile Include="Operators\OperandTokenProcessor.cs" />
+    <Compile Include="Operators\OperandTokenResultParser.cs" />
     <Compile Include="Operators\Operator.cs" />
-    <Compile Include="Operators\OperatorFactory.cs" />
+    <Compile Include="Operators\OperatorParseResult.cs" />
+    <Compile Include="Operators\OperatorTokenProcessor.cs" />
+    <Compile Include="Operators\OperatorTokenResultParser.cs" />
+    <Compile Include="Exceptions\PrematureFinalizationException.cs" />
     <Compile Include="Operators\SubstractionOperator.cs" />
+    <Compile Include="Operators\TokenProcessor.cs" />
+    <Compile Include="Operators\TokenResult.cs" />
+    <Compile Include="Operators\TokenType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

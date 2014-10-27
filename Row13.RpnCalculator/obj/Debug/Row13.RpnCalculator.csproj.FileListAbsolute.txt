@@ -11,3 +11,13 @@ C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculato
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.dll
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.Reflection.Context.CodePlex.dll
 C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.xml
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\Row13.RpnCalculator.dll
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\Row13.RpnCalculator.pdb
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.dll
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.Reflection.Context.CodePlex.dll
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\System.ComponentModel.Composition.CodePlex.xml
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.csprojResolveAssemblyReference.cache
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.dll
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.pdb
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.dll
+C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.xml

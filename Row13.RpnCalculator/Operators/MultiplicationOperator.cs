@@ -3,7 +3,7 @@
     public class MultiplicationOperator : Operator
     {
         public MultiplicationOperator()
-            : base('*')
+            : base("*")
         {
         }
 

@@ -1,10 +1,11 @@
-﻿namespace Row13.RpnCalculator.Exceptions
-{
-    using System;
+﻿using System;
 
-    public class InvalidOperatorException : Exception
+namespace Row13.RpnCalculator.Exceptions
+{
+    public class InvalidTokenException : Exception
     {
-        public InvalidOperatorException(string message) : base(message)
+        public InvalidTokenException( string message )
+            : base(message)
         {
         }
     }
