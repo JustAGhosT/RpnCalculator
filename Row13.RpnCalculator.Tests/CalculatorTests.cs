@@ -20,13 +20,52 @@ namespace Row13.RpnCalculator.Tests
         public void SimpleAdditionAddsTest()
         {
             //------------Arrange--------------------
-            var equation = "1 1 +";
+            const string Equation = "1 2 +";
 
             //------------Act------------------------
-            var answer = _evaluator.Eval(equation);
+            var answer = _evaluator.Eval(Equation);
 
             //------------Assert---------------------
-            Assert.AreEqual<double>(2D, answer);
+            Assert.AreEqual(3D, answer);
+        }
+
+        [TestMethod]
+        public void SimpleSubstractionSubstractsTest()
+        {
+            //------------Arrange--------------------
+            const string Equation = "1 2 -";
+
+            //------------Act------------------------
+            var answer = _evaluator.Eval(Equation);
+
+            //------------Assert---------------------
+            Assert.AreEqual(-1D, answer);
+        }
+
+        [TestMethod]
+        public void SimpleMultiplicationMultipliesTest()
+        {
+            //------------Arrange--------------------
+            const string Equation = "1 2 *";
+
+            //------------Act------------------------
+            var answer = _evaluator.Eval(Equation);
+
+            //------------Assert---------------------
+            Assert.AreEqual(2D, answer);
+        }
+
+        [TestMethod]
+        public void SimpleDivisionDivides()
+        {
+            //------------Arrange--------------------
+            const string Equation = "1 2 /";
+
+            //------------Act------------------------
+            var answer = _evaluator.Eval(Equation);
+
+            //------------Assert---------------------
+            Assert.AreEqual(0.5, answer);
         }
     }
 }
