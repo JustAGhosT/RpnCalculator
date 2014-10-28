@@ -3,7 +3,7 @@
     public class SubstractionOperator : Operator
     {
         public SubstractionOperator()
-            : base("-", 0)
+            : base("-", false)
         {
         }
 

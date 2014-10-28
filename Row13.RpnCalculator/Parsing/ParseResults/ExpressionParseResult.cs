@@ -2,29 +2,15 @@
 
 namespace Row13.RpnCalculator.Parsing.ParseResults
 {
-    using Row13.RpnCalculator.Operators;
+    using System.Collections.Generic;
 
     public class ExpressionParseResult : ParseResult<ResultExpression>
     {
         public ExpressionParseResult(ResultExpression result)
             : base(result)
         {
+            TakesPrecedence = Result.Operator.TakesPrecedence;
         }
-
-        public override string ToDisplay()
-        {  
-            var result = Result.Expressions.Item1.ToDisplay() + Result.Operator.ToDisplay()
-                         + Result.Expressions.Item2.ToDisplay();
-            var precedence = ((OperatorParseResult)Result.Operator).Result.Precedence;
-            if (precedence == 0)
-            {
-                return "(" + result + ")";
-            }
-
-            return result;
-        }
-
-
     }
 
     public class ResultExpression

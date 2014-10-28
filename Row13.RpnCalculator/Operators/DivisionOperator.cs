@@ -3,7 +3,7 @@
     public class DivisionOperator : Operator
     {
         public DivisionOperator()
-            : base("/", 1)
+            : base("/", true)
         {
         }
 

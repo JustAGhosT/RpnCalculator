@@ -5,15 +5,16 @@
     public abstract class Operator : IOperator
     {
         public string ProcessedToken { get; private set; }
-        public int Precedence { get; private set; }
+
+        public bool TakesPrecedence { get; private set; }
 
         public abstract double Eval( double operand1, double operand2 );
 
-        protected Operator( string token, int precedence )
+        protected Operator( string token, bool takesPrecedence )
         {
             ProcessedToken = token;
             TokenType = TokenType.Operator;
-            Precedence = precedence;
+            TakesPrecedence = takesPrecedence;
         }
 
         public bool CanProcess( string token )

@@ -7,10 +7,5 @@
         {
             this.TokenType = TokenType.Finalizer;
         }
-
-        public override string ToDisplay()
-        {
-            return string.Empty;
-        }
     }
 }

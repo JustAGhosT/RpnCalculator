@@ -6,7 +6,7 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
     {
         public TokenType TokenType { get; set; }
 
-        public abstract string ToDisplay();
+        public bool TakesPrecedence { get; protected set; }
 
         public T Result { get; set; }
 

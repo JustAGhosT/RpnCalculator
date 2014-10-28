@@ -6,7 +6,7 @@ namespace Row13.RpnCalculator.Operators
     public interface IOperator
     {
         string ProcessedToken { get; }
-        int Precedence { get; }
+        bool TakesPrecedence { get; }
 
         double Eval( double operand1, double operand2 );
         bool CanProcess( string token );

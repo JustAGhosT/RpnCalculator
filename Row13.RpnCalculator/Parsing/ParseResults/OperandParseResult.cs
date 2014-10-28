@@ -9,12 +9,7 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
         public OperandParseResult( double result )
             : base( result )
         {
-            this.TokenType = TokenType.Operator;
-        }
-
-        public override string ToDisplay()
-        {
-            return Result.ToString(CultureInfo.InvariantCulture);
+            this.TokenType = TokenType.Operand;
         }
     }
 }

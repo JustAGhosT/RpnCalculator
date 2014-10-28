@@ -8,11 +8,7 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
             : base(@operator)
         {
             this.TokenType = TokenType.Operator;
-        }
-
-        public override string ToDisplay()
-        {
-            return Result.ProcessedToken;
+            TakesPrecedence = @operator.TakesPrecedence;
         }
     }
 }

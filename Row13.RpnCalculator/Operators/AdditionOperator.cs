@@ -6,7 +6,7 @@ namespace Row13.RpnCalculator.Operators
     public class AdditionOperator : Operator
     {
         public AdditionOperator()
-            : base("+", 0)
+            : base("+", false)
         {
         }
 
