@@ -38,11 +38,6 @@
       <HintPath>..\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.CodePlex.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator\ExpressionBuilder.cs" />
@@ -69,7 +64,7 @@
     <Compile Include="Parsing\ParseResults\OperatorParseResult.cs" />
     <Compile Include="TokenProcessing\OperatorTokenProcessor.cs" />
     <Compile Include="Parsing\OperatorResultParser.cs" />
-    <Compile Include="Exceptions\PrematureFinalizationException.cs" />
+    <Compile Include="Exceptions\FinalizationException.cs" />
     <Compile Include="Operators\SubstractionOperator.cs" />
     <Compile Include="TokenProcessing\TokenProcessor.cs" />
     <Compile Include="Parsing\ParseResults\ParseResult.cs" />

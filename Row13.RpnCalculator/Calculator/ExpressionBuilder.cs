@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Globalization;
 using Row13.RpnCalculator.Parsing.ParseResults;
-using System.ComponentModel.Composition;
 
 namespace Row13.RpnCalculator.Calculator
 {
@@ -10,7 +10,7 @@ namespace Row13.RpnCalculator.Calculator
         string Build(IParseResult result, bool previousPrecedence);
     }
 
-    [Export(typeof(IExpressionBuilder))]
+    [Export(typeof (IExpressionBuilder))]
     public class ExpressionBuilder : IExpressionBuilder
     {
         public string Build(IParseResult result, bool previousPrecedence)
@@ -24,9 +24,9 @@ namespace Row13.RpnCalculator.Calculator
             var expressionResult = result as ExpressionParseResult;
             if (expressionResult != null)
             {
-                string toReturn = this.Build(expressionResult.Result.Expressions.Item1, expressionResult.TakesPrecedence)
-                                  + ((OperatorParseResult)expressionResult.Result.Operator).Result.ProcessedToken
-                                  + this.Build(expressionResult.Result.Expressions.Item2, expressionResult.TakesPrecedence);
+                string toReturn = Build(expressionResult.FirstExpression, expressionResult.TakesPrecedence)
+                                  + ((OperatorParseResult) expressionResult.Result.Operator).Result.ProcessedToken
+                                  + Build(expressionResult.SecondExpression, expressionResult.TakesPrecedence);
                 if (Convert.ToInt32(expressionResult.TakesPrecedence) < Convert.ToInt32(previousPrecedence))
                 {
                     toReturn = '(' + toReturn + ')';

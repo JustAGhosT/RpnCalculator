@@ -2,8 +2,8 @@
 {
     public class InvalidResultException : RpnCalculatorException
     {
-        public InvalidResultException( string message )
-            : base( message )
+        public InvalidResultException(string message)
+            : base(message)
         {
         }
     }

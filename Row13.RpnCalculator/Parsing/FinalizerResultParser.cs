@@ -1,32 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Row13.RpnCalculator.Calculator;
 using Row13.RpnCalculator.Parsing.ParseResults;
 
 namespace Row13.RpnCalculator.Parsing
 {
     public class FinalizerResultParser : ResultParser<IParseResult>
     {
+        public FinalizerResultParser() :
+            base(3)
+        {
+            ParsableTokens = new List<string> {"="};
+        }
+
         public IEnumerable<string> ParsableTokens { get; private set; }
 
-        public FinalizerResultParser() :
-            base( 3 )
+        private bool CanParse(string toParse)
         {
-            this.ParsableTokens = new List<string> { "=" };
+            return ParsableTokens.Contains(toParse);
         }
 
-        private bool CanParse( string toParse )
+        public override bool TryParse(string toParse, out IParseResult result)
         {
-            return this.ParsableTokens.Contains( toParse );
-        }
+            bool canParse = CanParse(toParse);
 
-        public override bool TryParse( string toParse, out IParseResult result )
-        {
-            var canParse = this.CanParse( toParse );
-
-            result = canParse ?
-            new FinalizerParseResult( true )
-            : null;
+            result = canParse
+                ? new FinalizerParseResult(true)
+                : null;
 
             return canParse;
         }

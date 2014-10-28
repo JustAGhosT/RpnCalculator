@@ -10,19 +10,19 @@ namespace Row13.RpnCalculator.Parsing
     [Export]
     public class ParsingProcessor
     {
-        public IEnumerable<IResultParser<IParseResult>> TokenResultParsers { get; set; }
-
         [ImportingConstructor]
-        public ParsingProcessor( [ImportMany]IEnumerable<IResultParser<IParseResult>> tokenResultParsers )
+        public ParsingProcessor([ImportMany] IEnumerable<IResultParser<IParseResult>> tokenResultParsers)
         {
-            this.TokenResultParsers = tokenResultParsers.OrderBy( trp => trp.ParsePrecedence );
+            TokenResultParsers = tokenResultParsers.OrderBy(trp => trp.ParsePrecedence);
         }
 
-        public IParseResult Parse( string toParse )
+        public IEnumerable<IResultParser<IParseResult>> TokenResultParsers { get; set; }
+
+        public IParseResult Parse(string toParse)
         {
             IParseResult result = null;
 
-            foreach (var tokenResultParser in this.TokenResultParsers)
+            foreach (var tokenResultParser in TokenResultParsers)
             {
                 tokenResultParser.TryParse(toParse, out result);
                 if (result != null)
@@ -31,9 +31,10 @@ namespace Row13.RpnCalculator.Parsing
                 }
             }
 
-            if( result == null )
+            if (result == null)
             {
-                throw new InvalidTokenException( String.Format( "{0} is an unregocnised token, consider seperated input with spaces", toParse ) );
+                throw new InvalidTokenException(
+                    String.Format("{0} is an unregocnised token, consider seperated input with spaces", toParse));
             }
 
             return null;

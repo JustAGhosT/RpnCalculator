@@ -2,7 +2,7 @@
 {
     public class InvalidTokenException : RpnCalculatorException
     {
-        public InvalidTokenException( string message )
+        public InvalidTokenException(string message)
             : base(message)
         {
         }

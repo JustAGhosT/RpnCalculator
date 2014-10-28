@@ -7,7 +7,7 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
         public OperatorParseResult(IOperator @operator)
             : base(@operator)
         {
-            this.TokenType = TokenType.Operator;
+            TokenType = TokenType.Operator;
             TakesPrecedence = @operator.TakesPrecedence;
         }
     }

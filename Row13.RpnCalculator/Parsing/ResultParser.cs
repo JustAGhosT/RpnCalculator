@@ -4,13 +4,13 @@ namespace Row13.RpnCalculator.Parsing
 {
     public abstract class ResultParser<T> : IResultParser<T> where T : IParseResult
     {
-        public abstract bool TryParse( string toParse, out T result );
+        protected ResultParser(int parsePrecedence)
+        {
+            ParsePrecedence = parsePrecedence;
+        }
+
+        public abstract bool TryParse(string toParse, out T result);
 
         public int ParsePrecedence { get; private set; }
-
-        protected ResultParser( int parsePrecedence )
-        {
-            this.ParsePrecedence = parsePrecedence;
-        }
     }
 }

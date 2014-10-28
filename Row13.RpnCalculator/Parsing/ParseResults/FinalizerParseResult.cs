@@ -3,9 +3,9 @@
     public class FinalizerParseResult : ParseResult<bool>
     {
         public FinalizerParseResult(bool canFinalize)
-            : base( canFinalize )
+            : base(canFinalize)
         {
-            this.TokenType = TokenType.Finalizer;
+            TokenType = TokenType.Finalizer;
         }
     }
 }

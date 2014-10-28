@@ -63,6 +63,7 @@
     <Compile Include="OperatorTests.cs" />
     <Compile Include="CalculatorTests.cs" />
     <Compile Include="TokenResultParserTests.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

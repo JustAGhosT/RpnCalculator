@@ -1,27 +1,27 @@
-﻿namespace Row13.RpnCalculator.Operators
-{
-    using Row13.RpnCalculator.Parsing.ParseResults;
+﻿using Row13.RpnCalculator.Parsing.ParseResults;
 
+namespace Row13.RpnCalculator.Operators
+{
     public abstract class Operator : IOperator
     {
-        public string ProcessedToken { get; private set; }
-
-        public bool TakesPrecedence { get; private set; }
-
-        public abstract double Eval( double operand1, double operand2 );
-
-        protected Operator( string token, bool takesPrecedence )
+        protected Operator(string token, bool takesPrecedence)
         {
             ProcessedToken = token;
             TokenType = TokenType.Operator;
             TakesPrecedence = takesPrecedence;
         }
 
-        public bool CanProcess( string token )
+        public TokenType TokenType { get; set; }
+
+        public string ProcessedToken { get; private set; }
+
+        public bool TakesPrecedence { get; private set; }
+
+        public abstract double Eval(double operand1, double operand2);
+
+        public bool CanProcess(string token)
         {
             return token == ProcessedToken;
         }
-
-        public TokenType TokenType { get; set; }
     }
 }

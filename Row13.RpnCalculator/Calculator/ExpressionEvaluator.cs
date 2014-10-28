@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using System.Reflection;
 using log4net;
-using Row13.RpnCalculator.Operators;
+using Row13.RpnCalculator.Exceptions;
+using Row13.RpnCalculator.Output;
+using Row13.RpnCalculator.Parsing;
+using Row13.RpnCalculator.Parsing.ParseResults;
+using Row13.RpnCalculator.TokenProcessing;
 
 namespace Row13.RpnCalculator.Calculator
 {
-    using System.ComponentModel.Composition.Hosting;
-
-    using Row13.RpnCalculator.Exceptions;
-    using Row13.RpnCalculator.Output;
-    using Row13.RpnCalculator.Parsing;
-    using Row13.RpnCalculator.Parsing.ParseResults;
-    using Row13.RpnCalculator.TokenProcessing;
-
     public class ExpressionEvaluator
     {
         #region private members
 
-        private static readonly ILog Log = LogManager.GetLogger( System.Reflection.MethodBase.GetCurrentMethod().DeclaringType );
-        private readonly Stack<IParseResult> _resultTokens; 
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly Stack<IParseResult> _expressionTokens;
+        private readonly Stack<IParseResult> _resultTokens;
         private readonly IDictionary<Type, ITokenProcessor<IParseResult>> _tokenProcessorDictionary;
-
+        private CompositionContainer _container;
         private string[] _expression;
         private IEnumerable<ITokenProcessor<IParseResult>> _tokenProcessors;
-        private CompositionContainer _container;
 
         #endregion private members
 
@@ -34,14 +31,11 @@ namespace Row13.RpnCalculator.Calculator
 
         [Import]
         public ParsingProcessor TokenParser { get; private set; }
-        
+
         [ImportMany]
         public IEnumerable<ITokenProcessor<IParseResult>> TokenProcessors
         {
-            get
-            {
-                return _tokenProcessors;
-            }
+            get { return _tokenProcessors; }
             set
             {
                 _tokenProcessors = value;
@@ -55,7 +49,8 @@ namespace Row13.RpnCalculator.Calculator
 
         #region constructor and init
 
-        public ExpressionEvaluator(bool compose, IOutputProcessor outputProcessor, ParsingProcessor tokenParser = null, IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors = null)
+        public ExpressionEvaluator(bool compose, IOutputProcessor outputProcessor, ParsingProcessor tokenParser = null,
+            IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors = null)
         {
             _resultTokens = new Stack<IParseResult>();
             _expressionTokens = new Stack<IParseResult>();
@@ -73,23 +68,23 @@ namespace Row13.RpnCalculator.Calculator
             }
         }
 
-        #endregion 
+        #endregion
 
         #region public methods
 
-        public double Eval( string expression )
+        public double Eval(string expression)
         {
             TokenProcessors.ToList().ForEach(tp => tp.ResetState());
             _resultTokens.Clear();
 
-            var operationStarted = DateTime.Now;
+            DateTime operationStarted = DateTime.Now;
             Log.Debug(String.Format("Evaluating {0}", expression));
 
-            var index = 0;
+            int index = 0;
             try
             {
-                _expression = expression.Split( ' ' );
-                var totalExpressions = _expression.Count();
+                _expression = expression.Split(' ');
+                int totalExpressions = _expression.Count();
 
                 while (index < totalExpressions)
                 {
@@ -97,18 +92,18 @@ namespace Row13.RpnCalculator.Calculator
                     index++;
                 }
 
-                if (_tokenProcessorDictionary[typeof(FinalizerParseResult)].ProcessedTokenCount == 0)
+                if (_tokenProcessorDictionary[typeof (FinalizerParseResult)].ProcessedTokenCount == 0)
                 {
                     throw new NoFinalizerFoundException("Consider including an equal(=) sign to evaluate expression");
                 }
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
                 Log.Error(String.Format("Failed to evaluate {0}.", expression), ex);
                 throw;
             }
 
-            var timeSpan = DateTime.Now - operationStarted;
+            TimeSpan timeSpan = DateTime.Now - operationStarted;
             Log.Debug(String.Format("Evaluated {0} in {1}.", expression, timeSpan));
 
             return OutputProcessor.Result;
@@ -120,11 +115,11 @@ namespace Row13.RpnCalculator.Calculator
 
         private void ProcessExpression(int index)
         {
-            string toParse = this._expression[index];
-            IParseResult tokenParseResult = this.TokenParser.Parse(toParse);
+            string toParse = _expression[index];
+            IParseResult tokenParseResult = TokenParser.Parse(toParse);
             Type resultType = tokenParseResult.GetType();
-            ITokenProcessor<IParseResult> processor = this._tokenProcessorDictionary[resultType];
-            Action result = processor.ProcessToken(tokenParseResult, this._resultTokens, this._expressionTokens, this.OutputProcessor);
+            ITokenProcessor<IParseResult> processor = _tokenProcessorDictionary[resultType];
+            Action result = processor.ProcessToken(tokenParseResult, _resultTokens, _expressionTokens, OutputProcessor);
             if (result != null)
             {
                 result.Invoke();
@@ -134,13 +129,13 @@ namespace Row13.RpnCalculator.Calculator
         private void PerformComposition()
         {
             var catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ExpressionEvaluator).Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof (ExpressionEvaluator).Assembly));
             _container = new CompositionContainer(catalog);
 
             //Fill the imports of this object
             try
             {
-                this._container.ComposeParts(this);
+                _container.ComposeParts(this);
             }
             catch (CompositionException ex)
             {
