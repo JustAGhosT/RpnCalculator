@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculator\ExpressionBuilder.cs" />
     <Compile Include="Calculator\ExpressionEvaluator.cs" />
     <Compile Include="Exceptions\InvalidOperatorException.cs" />
     <Compile Include="Exceptions\NoFinalizerFoundException.cs" />

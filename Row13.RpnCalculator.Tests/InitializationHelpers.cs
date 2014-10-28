@@ -42,7 +42,7 @@ namespace Row13.RpnCalculator.Tests
             {
                 new OperatorTokenProcessor(),
                 new OperandTokenProcessor(),
-                new FinalizerTokenProcessor()
+                new FinalizerTokenProcessor(new ExpressionBuilder())
             });
         }
     }
