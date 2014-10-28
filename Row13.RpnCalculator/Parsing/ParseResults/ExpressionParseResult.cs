@@ -2,8 +2,6 @@
 
 namespace Row13.RpnCalculator.Parsing.ParseResults
 {
-    using System.Collections.Generic;
-
     public class ExpressionParseResult : ParseResult<ResultExpression>
     {
         public ExpressionParseResult(ResultExpression result)
