@@ -12,6 +12,8 @@ namespace Row13.RpnCalculator.TokenProcessing
     {
         public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
         {
+            ProcessedTokenCount++;
+
             IParseResult result = currentTokens.Pop();
 
             if( currentTokens.Any() )

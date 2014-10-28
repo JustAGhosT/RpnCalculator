@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Row13.RpnCalculator.Exceptions
+﻿namespace Row13.RpnCalculator.Exceptions
 {
-    public class InvalidResultException : Exception
+    public class InvalidResultException : RpnCalculatorException
     {
         public InvalidResultException( string message )
             : base( message )

@@ -7,6 +7,9 @@ using Row13.RpnCalculator.Operators;
 
 namespace Row13.RpnCalculator.Calculator
 {
+    using System.ComponentModel.Composition.Hosting;
+
+    using Row13.RpnCalculator.Exceptions;
     using Row13.RpnCalculator.Output;
     using Row13.RpnCalculator.Parsing;
     using Row13.RpnCalculator.Parsing.ParseResults;
@@ -14,26 +17,71 @@ namespace Row13.RpnCalculator.Calculator
 
     public class ExpressionEvaluator
     {
+        #region private members
+
         private static readonly ILog Log = LogManager.GetLogger( System.Reflection.MethodBase.GetCurrentMethod().DeclaringType );
+        private readonly Stack<IParseResult> _parsedTokens;
+        private readonly IDictionary<Type, ITokenProcessor<IParseResult>> _tokenProcessorDictionary;
 
         private string[] _expression;
-        private readonly Stack<IParseResult> _parsedTokens;
+        private IEnumerable<ITokenProcessor<IParseResult>> _tokenProcessors;
+        private CompositionContainer _container;
+
+        #endregion private members
+
+        #region public members
+
+        [Import]
         public ParsingProcessor TokenParser { get; private set; }
-        public IDictionary<Type, ITokenProcessor<IParseResult>> TokenProcessors { get; private set; }
-        public IOutputProcessor OutputProcessor { get; private set; }
-            
-        [ImportingConstructor]
-        public ExpressionEvaluator(ParsingProcessor tokenParser, IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors, IOutputProcessor outputProcessor)
+        
+        [ImportMany]
+        public IEnumerable<ITokenProcessor<IParseResult>> TokenProcessors
         {
-            TokenParser = tokenParser;
-            _parsedTokens = new Stack<IParseResult>();
-            TokenProcessors = new Dictionary<Type, ITokenProcessor<IParseResult>>();
-            tokenProcessors.ToList().ForEach(p => TokenProcessors[p.ProcessedType] = p);
-            OutputProcessor = outputProcessor;
+            get
+            {
+                return _tokenProcessors;
+            }
+            set
+            {
+                _tokenProcessors = value;
+                _tokenProcessors.ToList().ForEach(p => _tokenProcessorDictionary[p.ProcessedType] = p);
+            }
         }
+
+        public IOutputProcessor OutputProcessor { get; private set; }
+
+        #endregion public members
+
+        #region constructor and init
+
+        public ExpressionEvaluator(bool compose, IOutputProcessor outputProcessor, ParsingProcessor tokenParser = null, IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors = null)
+        {
+            _parsedTokens = new Stack<IParseResult>();
+            _tokenProcessorDictionary = new Dictionary<Type, ITokenProcessor<IParseResult>>();
+            OutputProcessor = outputProcessor;
+
+            if (compose)
+            {
+                PerformComposition();
+            }
+            else
+            {
+                TokenParser = tokenParser;
+                TokenProcessors = tokenProcessors;
+            }
+        }
+
+        #endregion 
+
+        #region public methods
 
         public double Eval( string expression )
         {
+            TokenProcessors.ToList().ForEach(tp => tp.ResetState());
+
+            var operationStarted = DateTime.Now;
+            Log.Debug(String.Format("Evaluating {0}", expression));
+
             var index = 0;
             try
             {
@@ -42,25 +90,62 @@ namespace Row13.RpnCalculator.Calculator
 
                 while (index < totalExpressions)
                 {
-                    string token = _expression[index];
-                    IParseResult tokenParseResult = TokenParser.Parse(token);
-                    Type resultType = tokenParseResult.GetType();
-                    ITokenProcessor<IParseResult> processor = TokenProcessors[resultType];
-                    Action result = processor.ProcessToken( tokenParseResult, _parsedTokens, OutputProcessor );
-                    if( result != null )
-                    {
-                        result.Invoke();
-                    }
+                    ProcessExpression(index);
                     index++;
-               }
+                }
+
+                if (_tokenProcessorDictionary[typeof(FinalizerParseResult)].ProcessedTokenCount == 0)
+                {
+                    throw new NoFinalizerFoundException("Consider including an equal(=) sign to evaluate expression");
+                }
             }
             catch( Exception ex)
             {
-                Log.Error(String.Format("Failed to evaluate {0}", expression), ex);
+                Log.Error(String.Format("Failed to evaluate {0}.", expression), ex);
                 throw;
             }
 
-            return 0D;
+            var timeSpan = DateTime.Now - operationStarted;
+            Log.Debug(String.Format("Evaluated {0} in {1}.", expression, timeSpan));
+
+            return OutputProcessor.Result;
         }
+
+        #endregion
+
+        #region private methods
+
+        private void ProcessExpression(int index)
+        {
+            string token = this._expression[index];
+            IParseResult tokenParseResult = this.TokenParser.Parse(token);
+            Type resultType = tokenParseResult.GetType();
+            ITokenProcessor<IParseResult> processor = this._tokenProcessorDictionary[resultType];
+            Action result = processor.ProcessToken(tokenParseResult, this._parsedTokens, this.OutputProcessor);
+            if (result != null)
+            {
+                result.Invoke();
+            }
+        }
+
+        private void PerformComposition()
+        {
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ExpressionEvaluator).Assembly));
+            _container = new CompositionContainer(catalog);
+
+            //Fill the imports of this object
+            try
+            {
+                this._container.ComposeParts(this);
+            }
+            catch (CompositionException ex)
+            {
+                Log.Error("Composition Exceptoin", ex);
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        #endregion
     }
 }

@@ -10,8 +10,9 @@ namespace Row13.RpnCalculator.TokenProcessing
     {
         public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
         {
-            currentTokens.Push( token );
+            ProcessedTokenCount++;
 
+            currentTokens.Push( token );
             return null;
         }
     }

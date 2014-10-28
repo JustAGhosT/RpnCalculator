@@ -10,8 +10,13 @@ namespace Row13.RpnCalculator.TokenProcessing
     public abstract class TokenProcessor<T> : ITokenProcessor<IParseResult>
     {
         public abstract Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor);
-
         public Type ProcessedType { get; private set; }
+        public int ProcessedTokenCount { get; protected set; }
+
+        public virtual void ResetState()
+        {
+            ProcessedTokenCount = 0;
+        }
 
         protected TokenProcessor(  )
         {

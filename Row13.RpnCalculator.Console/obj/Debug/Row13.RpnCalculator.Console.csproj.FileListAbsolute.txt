@@ -1,0 +1,13 @@
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\obj\Debug\Row13.RpnCalculator.Console.csprojResolveAssemblyReference.cache
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\Row13.RpnCalculator.Console.exe.config
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\Row13.RpnCalculator.Console.exe
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\Row13.RpnCalculator.Console.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\Row13.RpnCalculator.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\System.ComponentModel.Composition.CodePlex.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\log4net.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\System.Reflection.Context.CodePlex.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\Row13.RpnCalculator.pdb
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\System.ComponentModel.Composition.CodePlex.xml
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\bin\Debug\log4net.xml
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\obj\Debug\Row13.RpnCalculator.Console.exe
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Console\obj\Debug\Row13.RpnCalculator.Console.pdb

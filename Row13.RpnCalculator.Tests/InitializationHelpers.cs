@@ -21,7 +21,7 @@ namespace Row13.RpnCalculator.Tests
                 new DivisionOperator()
             };
 
-            return new OperatorResultParser( operators );
+            return new OperatorResultParser(operators);
         }
 
         public static ParsingProcessor InitializeTokenParser()
@@ -33,17 +33,17 @@ namespace Row13.RpnCalculator.Tests
                 new FinalizerResultParser()
             };
 
-            return new ParsingProcessor( tokenParsers );
+            return new ParsingProcessor(tokenParsers);
         }
 
-        public static ExpressionEvaluator InitializeExpressionEvaluator( IOutputProcessor outputProcessor )
+        public static ExpressionEvaluator InitializeExpressionEvaluator(IOutputProcessor outputProcessor)
         {
-            return new ExpressionEvaluator( InitializeTokenParser(), new List<ITokenProcessor<IParseResult>>
+            return new ExpressionEvaluator(false, outputProcessor, InitializeTokenParser(), new List<ITokenProcessor<IParseResult>>
             {
                 new OperatorTokenProcessor(),
                 new OperandTokenProcessor(),
                 new FinalizerTokenProcessor()
-            }, outputProcessor );
+            });
         }
     }
 }

@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Calculator\ExpressionEvaluator.cs" />
     <Compile Include="Exceptions\InvalidOperatorException.cs" />
+    <Compile Include="Exceptions\NoFinalizerFoundException.cs" />
+    <Compile Include="Exceptions\RpnCalculatorException.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
     <Compile Include="Parsing\ParseResults\FinalizerParseResult.cs" />

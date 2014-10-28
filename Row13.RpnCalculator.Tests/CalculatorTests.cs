@@ -5,6 +5,7 @@ using Row13.RpnCalculator.Operators;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using Row13.RpnCalculator.Exceptions;
     using Row13.RpnCalculator.Output;
 
     [TestClass]
@@ -17,23 +18,24 @@ namespace Row13.RpnCalculator.Tests
         public void Initialize()
         {
             _mockProcessor = new Mock<IOutputProcessor>();
-            _evaluator = InitializationHelpers.InitializeExpressionEvaluator( _mockProcessor.Object );
+            _evaluator = InitializationHelpers.InitializeExpressionEvaluator(_mockProcessor.Object);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NoFinalizerFoundException))]
         public void NoFinalizerCreatesNoOutput()
         {
             //------------Arrange--------------------
             const string equation = "1 2 +";
             double result = 0D;
-            _mockProcessor.Setup( p => p.Write( It.IsAny<double>() ) ).Callback<double>( obj => result = obj );
+            _mockProcessor.Setup(p => p.Write(It.IsAny<double>())).Callback<double>(obj => result = obj);
 
             //------------Act------------------------
-            var answer = _evaluator.Eval( equation );
+            var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( 0D, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Never );
+            Assert.AreEqual(0D, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Never);
         }
 
         [TestMethod]
@@ -48,8 +50,8 @@ namespace Row13.RpnCalculator.Tests
             var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( 3D, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Once );
+            Assert.AreEqual(3D, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Once);
         }
 
         [TestMethod]
@@ -58,14 +60,14 @@ namespace Row13.RpnCalculator.Tests
             //------------Arrange--------------------
             const string equation = "1 2 - =";
             double result = 0D;
-            _mockProcessor.Setup( p => p.Write( It.IsAny<double>() ) ).Callback<double>( obj => result = obj );
+            _mockProcessor.Setup(p => p.Write(It.IsAny<double>())).Callback<double>(obj => result = obj);
 
             //------------Act------------------------
             var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( -1D, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Once );
+            Assert.AreEqual(-1D, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Once);
         }
 
         [TestMethod]
@@ -74,14 +76,14 @@ namespace Row13.RpnCalculator.Tests
             //------------Arrange--------------------
             const string equation = "1 2 * =";
             double result = 0D;
-            _mockProcessor.Setup( p => p.Write( It.IsAny<double>() ) ).Callback<double>( obj => result = obj );
+            _mockProcessor.Setup(p => p.Write(It.IsAny<double>())).Callback<double>(obj => result = obj);
 
             //------------Act------------------------
             var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( 2D, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Once );
+            Assert.AreEqual(2D, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Once);
         }
 
         [TestMethod]
@@ -90,30 +92,30 @@ namespace Row13.RpnCalculator.Tests
             //------------Arrange--------------------
             const string equation = "1 2 / =";
             double result = 0D;
-            _mockProcessor.Setup( p => p.Write( It.IsAny<double>() ) ).Callback<double>( obj => result = obj );
+            _mockProcessor.Setup(p => p.Write(It.IsAny<double>())).Callback<double>(obj => result = obj);
 
             //------------Act------------------------
             var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( 0.5, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Once );
-        }   
-        
+            Assert.AreEqual(0.5, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Once);
+        }
+
         [TestMethod]
         public void FourOperatorsSuccees()
         {
             //------------Arrange--------------------
             const string equation = "5 1 2 + 4 * + 3 - =";
             double result = 0D;
-            _mockProcessor.Setup( p => p.Write( It.IsAny<double>() ) ).Callback<double>( obj => result = obj );
+            _mockProcessor.Setup(p => p.Write(It.IsAny<double>())).Callback<double>(obj => result = obj);
 
             //------------Act------------------------
             var answer = _evaluator.Eval(equation);
 
             //------------Assert---------------------
-            Assert.AreEqual( 14D, result );
-            _mockProcessor.Verify( p => p.Write( It.IsAny<double>() ), Times.Once );
+            Assert.AreEqual(14D, result);
+            _mockProcessor.Verify(p => p.Write(It.IsAny<double>()), Times.Once);
         }
     }
 }
