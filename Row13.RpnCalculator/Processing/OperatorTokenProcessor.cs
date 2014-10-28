@@ -45,21 +45,21 @@ namespace Row13.RpnCalculator.Processing
             return null;
         }
 
-        private static double GetResult(IParseResult operandLeft)
+        private static double GetResult(IParseResult parseResult)
         {
-            var leftResult = 0D;
+            var result = 0D;
 
-            var left = operandLeft as OperandParseResult;
-            if (left != null)
+            var operandResult = parseResult as OperandParseResult;
+            if( operandResult != null )
             {
-                leftResult = left.Result;
+                result = operandResult.Result;
             }
-            var parseResult = operandLeft as ExpressionParseResult;
-            if (parseResult != null)
+            var expressionResult = parseResult as ExpressionParseResult;
+            if( expressionResult != null )
             {
-                leftResult = parseResult.Result.Result;
+                result = expressionResult.Result.Result;
             }
-            return leftResult;
+            return result;
         }
     }
 }
