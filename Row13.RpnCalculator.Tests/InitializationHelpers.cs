@@ -4,9 +4,14 @@ using Row13.RpnCalculator.Operators;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using Row13.RpnCalculator.Output;
+    using Row13.RpnCalculator.Parsing;
+    using Row13.RpnCalculator.Parsing.ParseResults;
+    using Row13.RpnCalculator.TokenProcessing;
+
     public static class InitializationHelpers
     {
-        public static ITokenResultParser<ITokenResult> InitializeOperatorTokenResultParser()
+        public static IResultParser<IParseResult> InitializeOperatorTokenResultParser()
         {
             var operators = new List<IOperator>
             {
@@ -16,29 +21,29 @@ namespace Row13.RpnCalculator.Tests
                 new DivisionOperator()
             };
 
-            return new OperatorTokenResultParser( operators );
+            return new OperatorResultParser( operators );
         }
 
-        public static TokenParser InitializeTokenParser()
+        public static ParsingProcessor InitializeTokenParser()
         {
-            var tokenParsers = new List<ITokenResultParser<ITokenResult>>
+            var tokenParsers = new List<IResultParser<IParseResult>>
             {
                 InitializeOperatorTokenResultParser(),
-                new OperandTokenResultParser(),
-                new FinalizerTokenResultParser()
+                new OperandResultParser(),
+                new FinalizerResultParser()
             };
 
-            return new TokenParser( tokenParsers );
+            return new ParsingProcessor( tokenParsers );
         }
 
         public static ExpressionEvaluator InitializeExpressionEvaluator( IOutputProcessor outputProcessor )
         {
-            return new ExpressionEvaluator( InitializeTokenParser(), new List<ITokenProcessor<ITokenResult>>
+            return new ExpressionEvaluator( InitializeTokenParser(), new List<ITokenProcessor<IParseResult>>
             {
                 new OperatorTokenProcessor(),
                 new OperandTokenProcessor(),
-                new FinalizerTokenProcessor(outputProcessor)
-            } );
+                new FinalizerTokenProcessor()
+            }, outputProcessor );
         }
     }
 }

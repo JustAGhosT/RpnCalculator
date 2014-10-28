@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Row13.RpnCalculator.Operators
+namespace Row13.RpnCalculator.Output
 {
     public interface IOutputProcessor
     {

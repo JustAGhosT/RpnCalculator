@@ -21,3 +21,7 @@ C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\Moq.xml
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\log4net.dll
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\log4net.xml
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\Moq.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\log4net.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\Moq.xml
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator.Tests\bin\Debug\log4net.xml

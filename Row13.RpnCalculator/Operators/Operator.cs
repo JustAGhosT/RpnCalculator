@@ -1,5 +1,7 @@
 ﻿namespace Row13.RpnCalculator.Operators
 {
+    using Row13.RpnCalculator.Parsing.ParseResults;
+
     public abstract class Operator : IOperator
     {
         public string ProcessedToken { get; private set; }

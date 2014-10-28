@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Row13.RpnCalculator.Exceptions;
+using Row13.RpnCalculator.Parsing.ParseResults;
 
-namespace Row13.RpnCalculator.Operators
+namespace Row13.RpnCalculator.TokenProcessing
 {
+    using Row13.RpnCalculator.Output;
+
     public class OperatorTokenProcessor : TokenProcessor<OperatorParseResult>
     {
-        public override Action ProcessToken( ITokenResult token, Stack<ITokenResult> currentTokens )
+        public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
         {
             var typedToken = (OperatorParseResult) token;
 
-            var operand2 = currentTokens.Pop();
-            var operand1 = currentTokens.Pop();
+            IParseResult operand2 = currentTokens.Pop();
+            IParseResult operand1 = currentTokens.Pop();
 
             if( !( operand1 is OperandParseResult ) )
             {
@@ -22,7 +25,7 @@ namespace Row13.RpnCalculator.Operators
             var typedOperand1 = ( OperandParseResult )operand1;
             var typedOperand2 = ( OperandParseResult )operand2;
 
-            var result = typedToken.Result.Eval( typedOperand1.Result, typedOperand2.Result );
+            double result = typedToken.Result.Eval( typedOperand1.Result, typedOperand2.Result );
 
             var operandParseResult = new OperandParseResult( result );
 

@@ -1,7 +1,7 @@
-﻿namespace Row13.RpnCalculator.Operators
-{
-    using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 
+namespace Row13.RpnCalculator.Operators
+{
     [InheritedExport( typeof( IOperator ) )]
     public interface IOperator
     {

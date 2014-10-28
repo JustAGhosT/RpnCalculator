@@ -46,37 +46,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator\ExpressionEvaluator.cs" />
-    <Compile Include="Calculator\ITokenResultParser.cs" />
-    <Compile Include="Calculator\TokenParser.cs" />
-    <Compile Include="Calculator\TokenResultParser.cs" />
     <Compile Include="Exceptions\InvalidOperatorException.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
-    <Compile Include="Operators\FinalizerParseResult.cs" />
+    <Compile Include="Parsing\ParseResults\FinalizerParseResult.cs" />
     <Compile Include="Exceptions\InvalidResultException.cs" />
-    <Compile Include="Operators\FinalizerTokenProcessor.cs" />
-    <Compile Include="Operators\FinalizerTokenResultParser.cs" />
+    <Compile Include="TokenProcessing\FinalizerTokenProcessor.cs" />
+    <Compile Include="Parsing\FinalizerResultParser.cs" />
     <Compile Include="Operators\IOperator.cs" />
-    <Compile Include="Operators\IOutputProcessor.cs" />
-    <Compile Include="Operators\ITokenResult.cs" />
+    <Compile Include="Output\IOutputProcessor.cs" />
+    <Compile Include="Parsing\ParseResults\IParseResult.cs" />
     <Compile Include="Operators\MultiplicationOperator.cs" />
-    <Compile Include="Operators\OperandParseResult.cs" />
-    <Compile Include="Operators\OperandTokenProcessor.cs" />
-    <Compile Include="Operators\OperandTokenResultParser.cs" />
+    <Compile Include="Parsing\ParseResults\OperandParseResult.cs" />
+    <Compile Include="TokenProcessing\ITokenProcessor.cs" />
+    <Compile Include="TokenProcessing\OperandTokenProcessor.cs" />
+    <Compile Include="Parsing\OperandResultParser.cs" />
     <Compile Include="Operators\Operator.cs" />
-    <Compile Include="Operators\OperatorParseResult.cs" />
-    <Compile Include="Operators\OperatorTokenProcessor.cs" />
-    <Compile Include="Operators\OperatorTokenResultParser.cs" />
+    <Compile Include="Parsing\ParseResults\OperatorParseResult.cs" />
+    <Compile Include="TokenProcessing\OperatorTokenProcessor.cs" />
+    <Compile Include="Parsing\OperatorResultParser.cs" />
     <Compile Include="Exceptions\PrematureFinalizationException.cs" />
     <Compile Include="Operators\SubstractionOperator.cs" />
-    <Compile Include="Operators\TokenProcessor.cs" />
-    <Compile Include="Operators\TokenResult.cs" />
-    <Compile Include="Operators\TokenType.cs" />
+    <Compile Include="TokenProcessing\TokenProcessor.cs" />
+    <Compile Include="Parsing\ParseResults\ParseResult.cs" />
+    <Compile Include="Parsing\ParseResults\TokenType.cs" />
+    <Compile Include="Parsing\IResultParser.cs" />
+    <Compile Include="Parsing\ParsingProcessor.cs" />
+    <Compile Include="Parsing\ResultParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

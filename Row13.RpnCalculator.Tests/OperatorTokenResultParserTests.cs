@@ -4,10 +4,13 @@ using Row13.RpnCalculator.Operators;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using Row13.RpnCalculator.Parsing;
+    using Row13.RpnCalculator.Parsing.ParseResults;
+
     [TestClass]
     public class OperandFactoryTests
     {
-        private ITokenResultParser<ITokenResult> _operatorTokenResultParser;
+        private IResultParser<IParseResult> _operatorTokenResultParser;
 
         [TestInitialize]
         public void Initialize()
@@ -69,7 +72,7 @@ namespace Row13.RpnCalculator.Tests
 
         private IOperator ParseToken( string token )
         {
-            ITokenResult tokenResult;
+            IParseResult tokenResult;
             _operatorTokenResultParser.TryParse( token, out tokenResult );
             var typedTokenResult = ( OperatorParseResult )tokenResult;
             var @operator = typedTokenResult.Result;

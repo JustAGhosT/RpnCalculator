@@ -4,10 +4,12 @@ using Row13.RpnCalculator.Exceptions;
 
 namespace Row13.RpnCalculator.Tests
 {
+    using Row13.RpnCalculator.Parsing;
+
     [TestClass]
     public class TokenResultParserTests
     {
-        private TokenParser _tokenParser;
+        private ParsingProcessor _tokenParser;
 
         [TestInitialize]
         public void Initialize()

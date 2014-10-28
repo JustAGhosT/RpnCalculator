@@ -21,3 +21,5 @@ C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\obj\Debug\Row13.RpnCalculator.pdb
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.dll
 C:\Users\juries\Desktop\GitHub\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.xml
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.dll
+C:\Users\Jurie\Documents\Projects\RpnCalculator\RpnCalculator\Row13.RpnCalculator\bin\Debug\log4net.xml

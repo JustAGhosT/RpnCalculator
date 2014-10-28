@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Row13.RpnCalculator.Exceptions;
+using Row13.RpnCalculator.Output;
+using Row13.RpnCalculator.Parsing.ParseResults;
 
-namespace Row13.RpnCalculator.Operators
+namespace Row13.RpnCalculator.TokenProcessing
 {
     public class FinalizerTokenProcessor : TokenProcessor<FinalizerParseResult>
     {
-        public IOutputProcessor OutputProcessor { get; private set; }
-
-        [ImportingConstructor]
-        public FinalizerTokenProcessor( IOutputProcessor outputProcessor )
+        public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
         {
-            OutputProcessor = outputProcessor;
-        }
-
-        public override Action ProcessToken( ITokenResult token, Stack<ITokenResult> currentTokens )
-        {
-            var result = currentTokens.Pop();
+            IParseResult result = currentTokens.Pop();
 
             if( currentTokens.Any() )
             {
@@ -32,7 +26,7 @@ namespace Row13.RpnCalculator.Operators
 
             var parsedResult = ( OperandParseResult )result;
 
-            return OutputProcessor.Write( parsedResult.Result );
+            return outputProcessor.Write(parsedResult.Result);
         }
     }
 }
