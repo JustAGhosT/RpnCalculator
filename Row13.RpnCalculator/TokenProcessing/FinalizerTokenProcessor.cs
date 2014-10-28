@@ -10,13 +10,13 @@ namespace Row13.RpnCalculator.TokenProcessing
 {
     public class FinalizerTokenProcessor : TokenProcessor<FinalizerParseResult>
     {
-        public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
+        public override Action ProcessToken(IParseResult token, Stack<IParseResult> resultTokens, Stack<IParseResult> expressionTokens, IOutputProcessor outputProcessor)
         {
             ProcessedTokenCount++;
 
-            IParseResult result = currentTokens.Pop();
+            IParseResult result = resultTokens.Pop();
 
-            if( currentTokens.Any() )
+            if (resultTokens.Any())
             {
                 throw new PrematureFinalizationException( "Finalization was attempted before processing has completed" );
             }
@@ -27,8 +27,10 @@ namespace Row13.RpnCalculator.TokenProcessing
             }
 
             var parsedResult = ( OperandParseResult )result;
+            var expression = expressionTokens.Pop();
+            var expressionDisplay = expression.ToDisplay();
 
-            return outputProcessor.Write(parsedResult.Result);
+            return outputProcessor.Write(parsedResult.Result, expressionDisplay);
         }
     }
 }

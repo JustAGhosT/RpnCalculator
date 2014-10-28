@@ -9,7 +9,7 @@ namespace Row13.RpnCalculator.TokenProcessing
     [InheritedExport( typeof( ITokenProcessor<IParseResult> ) )]
     public interface ITokenProcessor<in T> where T : IParseResult
     {
-        Action ProcessToken(T token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor);
+        Action ProcessToken(T token, Stack<IParseResult> resultTokens, Stack<IParseResult> expressionTokens, IOutputProcessor outputProcessor);
         Type ProcessedType { get; }
         int ProcessedTokenCount { get; }
         void ResetState();

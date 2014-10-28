@@ -9,13 +9,14 @@ namespace Row13.RpnCalculator.TokenProcessing
 
     public class OperatorTokenProcessor : TokenProcessor<OperatorParseResult>
     {
-        public override Action ProcessToken(IParseResult token, Stack<IParseResult> currentTokens, IOutputProcessor outputProcessor)
+        public override Action ProcessToken(IParseResult token, Stack<IParseResult> resultTokens, Stack<IParseResult> expressionTokens, IOutputProcessor outputProcessor)
         {
             ProcessedTokenCount++;
 
+            //process result
             var typedToken = (OperatorParseResult) token;
-            IParseResult operand2 = currentTokens.Pop();
-            IParseResult operand1 = currentTokens.Pop();
+            IParseResult operand2 = resultTokens.Pop();
+            IParseResult operand1 = resultTokens.Pop();
 
             if( !( operand1 is OperandParseResult ) )
             {
@@ -30,7 +31,17 @@ namespace Row13.RpnCalculator.TokenProcessing
 
             var operandParseResult = new OperandParseResult( result );
 
-            currentTokens.Push( operandParseResult );
+            resultTokens.Push(operandParseResult);
+
+            //process expression
+            IParseResult operandRight = expressionTokens.Pop();
+            IParseResult operandLeft = expressionTokens.Pop();
+            var expr = new ResultExpression
+                           {
+                               Expressions = Tuple.Create(operandLeft, operandRight),
+                               Operator = typedToken
+                           };
+            expressionTokens.Push(new ExpressionParseResult(expr));
 
             return null;
         }

@@ -2,12 +2,19 @@
 
 namespace Row13.RpnCalculator.Parsing.ParseResults
 {
+    using System.Globalization;
+
     public class OperandParseResult : ParseResult<double>
     {
         public OperandParseResult( double result )
             : base( result )
         {
             this.TokenType = TokenType.Operator;
+        }
+
+        public override string ToDisplay()
+        {
+            return Result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

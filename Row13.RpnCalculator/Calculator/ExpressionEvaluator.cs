@@ -20,7 +20,8 @@ namespace Row13.RpnCalculator.Calculator
         #region private members
 
         private static readonly ILog Log = LogManager.GetLogger( System.Reflection.MethodBase.GetCurrentMethod().DeclaringType );
-        private readonly Stack<IParseResult> _parsedTokens;
+        private readonly Stack<IParseResult> _resultTokens; 
+        private readonly Stack<IParseResult> _expressionTokens;
         private readonly IDictionary<Type, ITokenProcessor<IParseResult>> _tokenProcessorDictionary;
 
         private string[] _expression;
@@ -56,7 +57,8 @@ namespace Row13.RpnCalculator.Calculator
 
         public ExpressionEvaluator(bool compose, IOutputProcessor outputProcessor, ParsingProcessor tokenParser = null, IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors = null)
         {
-            _parsedTokens = new Stack<IParseResult>();
+            _resultTokens = new Stack<IParseResult>();
+            _expressionTokens = new Stack<IParseResult>();
             _tokenProcessorDictionary = new Dictionary<Type, ITokenProcessor<IParseResult>>();
             OutputProcessor = outputProcessor;
 
@@ -78,7 +80,7 @@ namespace Row13.RpnCalculator.Calculator
         public double Eval( string expression )
         {
             TokenProcessors.ToList().ForEach(tp => tp.ResetState());
-            _parsedTokens.Clear();
+            _resultTokens.Clear();
 
             var operationStarted = DateTime.Now;
             Log.Debug(String.Format("Evaluating {0}", expression));
@@ -118,11 +120,11 @@ namespace Row13.RpnCalculator.Calculator
 
         private void ProcessExpression(int index)
         {
-            string token = this._expression[index];
-            IParseResult tokenParseResult = this.TokenParser.Parse(token);
+            string toParse = this._expression[index];
+            IParseResult tokenParseResult = this.TokenParser.Parse(toParse);
             Type resultType = tokenParseResult.GetType();
             ITokenProcessor<IParseResult> processor = this._tokenProcessorDictionary[resultType];
-            Action result = processor.ProcessToken(tokenParseResult, this._parsedTokens, this.OutputProcessor);
+            Action result = processor.ProcessToken(tokenParseResult, this._resultTokens, this._expressionTokens, this.OutputProcessor);
             if (result != null)
             {
                 result.Invoke();

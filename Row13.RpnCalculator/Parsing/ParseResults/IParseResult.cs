@@ -10,5 +10,6 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
     public interface IParseResult
     {
         TokenType TokenType { get; set; }
+        string ToDisplay();
     }
 }

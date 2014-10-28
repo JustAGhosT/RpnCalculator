@@ -51,6 +51,7 @@
     <Compile Include="Exceptions\RpnCalculatorException.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
+    <Compile Include="Parsing\ParseResults\ExpressionParseResult.cs" />
     <Compile Include="Parsing\ParseResults\FinalizerParseResult.cs" />
     <Compile Include="Exceptions\InvalidResultException.cs" />
     <Compile Include="TokenProcessing\FinalizerTokenProcessor.cs" />

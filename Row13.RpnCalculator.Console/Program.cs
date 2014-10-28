@@ -31,16 +31,20 @@
 
     public class ConsoleOutputProcessor : IOutputProcessor
     {
-        public Action Write(double result)
+        public Action Write(double result, string expression)
         {
             return () =>
-                {
-                    this.Result = result;
-                    Console.WriteLine(result);
-                    Console.ReadLine();
-                };
+            {
+                this.Result = result;
+                Expression = expression;
+                Console.WriteLine("Result :");
+                Console.WriteLine(result);
+                Console.WriteLine("Expression :");
+                Console.WriteLine(expression);
+            };
         }
 
         public double Result { get; set; }
+        public string Expression { get; set; }
     }
 }
