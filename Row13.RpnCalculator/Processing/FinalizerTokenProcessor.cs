@@ -7,7 +7,7 @@ using Row13.RpnCalculator.Exceptions;
 using Row13.RpnCalculator.Output;
 using Row13.RpnCalculator.Parsing.ParseResults;
 
-namespace Row13.RpnCalculator.TokenProcessing
+namespace Row13.RpnCalculator.Processing
 {
     public class FinalizerTokenProcessor : TokenProcessor<FinalizerParseResult>
     {
@@ -19,28 +19,20 @@ namespace Row13.RpnCalculator.TokenProcessing
             _expressionBuilder = expressionBuilder;
         }
 
-        public override Action ProcessToken(IParseResult token, Stack<IParseResult> resultTokens,
-            Stack<IParseResult> expressionTokens, IOutputProcessor outputProcessor)
+        public override Action ProcessToken(IParseResult token, Stack<IParseResult> resultTokens, IOutputProcessor outputProcessor)
         {
             ProcessedTokenCount++;
 
-            IParseResult result = resultTokens.Pop();
+            var result = ( ExpressionParseResult ) resultTokens.Pop();
 
             if (resultTokens.Any())
             {
                 throw new FinalizationException("Finalization was attempted before processing has completed");
             }
 
-            if (!(result is OperandParseResult))
-            {
-                throw new InvalidResultException("Finalization attempted while the stack contains an operand tokentype");
-            }
+            string expressionDisplay = _expressionBuilder.Build(result, false);
 
-            var parsedResult = (OperandParseResult) result;
-            var expression = (ExpressionParseResult) expressionTokens.Pop();
-            string expressionDisplay = _expressionBuilder.Build(expression, false);
-
-            return outputProcessor.Write(parsedResult.Result, expressionDisplay);
+            return outputProcessor.Write( result.Result.Result, expressionDisplay );
         }
     }
 }

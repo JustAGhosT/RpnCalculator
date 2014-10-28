@@ -9,7 +9,7 @@ using Row13.RpnCalculator.Exceptions;
 using Row13.RpnCalculator.Output;
 using Row13.RpnCalculator.Parsing;
 using Row13.RpnCalculator.Parsing.ParseResults;
-using Row13.RpnCalculator.TokenProcessing;
+using Row13.RpnCalculator.Processing;
 
 namespace Row13.RpnCalculator.Calculator
 {
@@ -18,7 +18,6 @@ namespace Row13.RpnCalculator.Calculator
         #region private members
 
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        private readonly Stack<IParseResult> _expressionTokens;
         private readonly Stack<IParseResult> _resultTokens;
         private readonly IDictionary<Type, ITokenProcessor<IParseResult>> _tokenProcessorDictionary;
         private CompositionContainer _container;
@@ -53,7 +52,6 @@ namespace Row13.RpnCalculator.Calculator
             IEnumerable<ITokenProcessor<IParseResult>> tokenProcessors = null)
         {
             _resultTokens = new Stack<IParseResult>();
-            _expressionTokens = new Stack<IParseResult>();
             _tokenProcessorDictionary = new Dictionary<Type, ITokenProcessor<IParseResult>>();
             OutputProcessor = outputProcessor;
 
@@ -119,7 +117,7 @@ namespace Row13.RpnCalculator.Calculator
             IParseResult tokenParseResult = TokenParser.Parse(toParse);
             Type resultType = tokenParseResult.GetType();
             ITokenProcessor<IParseResult> processor = _tokenProcessorDictionary[resultType];
-            Action result = processor.ProcessToken(tokenParseResult, _resultTokens, _expressionTokens, OutputProcessor);
+            Action result = processor.ProcessToken(tokenParseResult, _resultTokens, OutputProcessor);
             if (result != null)
             {
                 result.Invoke();

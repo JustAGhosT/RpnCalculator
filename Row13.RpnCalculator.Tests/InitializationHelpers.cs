@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using Row13.RpnCalculator.Calculator;
 using Row13.RpnCalculator.Operators;
+using Row13.RpnCalculator.Output;
+using Row13.RpnCalculator.Parsing;
+using Row13.RpnCalculator.Parsing.ParseResults;
+using Row13.RpnCalculator.Processing;
 
 namespace Row13.RpnCalculator.Tests
 {
-    using Row13.RpnCalculator.Output;
-    using Row13.RpnCalculator.Parsing;
-    using Row13.RpnCalculator.Parsing.ParseResults;
-    using Row13.RpnCalculator.TokenProcessing;
-
     public static class InitializationHelpers
     {
         public static IResultParser<IParseResult> InitializeOperatorTokenResultParser()

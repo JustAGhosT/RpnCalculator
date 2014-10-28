@@ -25,5 +25,6 @@ namespace Row13.RpnCalculator.Parsing.ParseResults
     {
         public Tuple<IParseResult, IParseResult> Expressions { get; set; }
         public IParseResult Operator { get; set; }
+        public double Result { get; set; }
     }
 }
