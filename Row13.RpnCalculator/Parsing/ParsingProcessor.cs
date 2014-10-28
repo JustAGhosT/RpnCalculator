@@ -33,7 +33,7 @@ namespace Row13.RpnCalculator.Parsing
 
             if( result == null )
             {
-                throw new InvalidTokenException( String.Format( "{0} is an unregocnised token", toParse ) );
+                throw new InvalidTokenException( String.Format( "{0} is an unregocnised token, consider seperated input with spaces", toParse ) );
             }
 
             return null;

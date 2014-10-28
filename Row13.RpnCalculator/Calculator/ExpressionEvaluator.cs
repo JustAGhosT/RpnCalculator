@@ -78,6 +78,7 @@ namespace Row13.RpnCalculator.Calculator
         public double Eval( string expression )
         {
             TokenProcessors.ToList().ForEach(tp => tp.ResetState());
+            _parsedTokens.Clear();
 
             var operationStarted = DateTime.Now;
             Log.Debug(String.Format("Evaluating {0}", expression));
